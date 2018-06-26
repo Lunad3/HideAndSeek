@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));// need to make public folder
 
 //routes
-// require("");
+require("./routes/html-routes.js")(app);
 
 
 //run app
