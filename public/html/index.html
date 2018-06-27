@@ -23,6 +23,18 @@
     </div>
 
     <script>
+        $("#button").on("click",function(){
+            let credentials = {
+                username:$("#username").val().trim(),
+                password:$("#password").val().trim(),
+                isNewUser:$("input[type=checkbox]").prop("checked")                
+            }
+            console.log(credentials);
+        });
+        $(".slider").on("click",function(){
+            console.log("switch has been clicked");
+        });
+
     </script>
 </body>
 </html>
