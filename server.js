@@ -10,6 +10,7 @@ app.use(express.static("public"));// need to make public folder
 
 //routes
 require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 //run app
 app.listen(PORT,()=>console.log("App listening on http://localhost:" + PORT));

@@ -16,25 +16,27 @@
         Password: <input id="password" type="password">
         <br>
         <label class="switch">
-            <input type="checkbox">
+            <input id="isNewUser" type="checkbox">
             <span class="slider round"></span>
         </label>
         <button id="button">Login</button>
     </div>
+    <button><a href="/html/nextpage.html">GO TO NEXT PAGE</a>></button>>
 
     <script>
-        $("#button").on("click",function(){
-            let credentials = {
-                username:$("#username").val().trim(),
-                password:$("#password").val().trim(),
-                isNewUser:$("input[type=checkbox]").prop("checked")                
+        $("#button").on("click",event=>{
+            const userCredentials = {
+                username: $("#username").val().trim(),
+                password: $("#password").val()
+            };
+            if($("#isNewUser").prop("checked")){
+                //create new row with user credentials and console.log data
+                $.post("/api/signup",userCredentials).then(data=>console.log(data));
+            }else{
+                //find user with same credentials and console.log data
+                $.post("/api/login",userCredentials).then(data=>console.log(data));                
             }
-            console.log(credentials);
         });
-        $(".slider").on("click",function(){
-            console.log("switch has been clicked");
-        });
-
     </script>
 </body>
 </html>
