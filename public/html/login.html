@@ -16,13 +16,29 @@
         Password: <input id="password" type="password">
         <br>
         <label class="switch">
-            <input type="checkbox">
+            <input name="isNewUser" type="checkbox">
             <span class="slider round"></span>
         </label>
         <button id="button">Login</button>
     </div>
 
     <script>
+        $("#button").on("click",event=>{
+            console.log("button pressed");
+            const userCredentials = {
+                username: $("#username").val().trim(),
+                password: $("#password").val()
+            };
+            console.log(userCredentials);
+            // if ()
+            $.post("/api/signup",userCredentials).then(data=>{
+                console.log(data);
+            });
+        });
+
+        // $(".switch").on("click",event=>{
+        //     console.log(!$("input[name=isNewUser:checked"));
+        // });
     </script>
 </body>
 </html>
