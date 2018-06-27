@@ -21,6 +21,10 @@ module.exports = app=>{
                 password: user.password
             }
         }).then(result=>{
+            console.log(result);
+            if(result != null){
+
+            }
             res.json(result);
         });
     });
