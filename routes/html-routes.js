@@ -8,7 +8,7 @@ module.exports = function(app){
     // });
 
     app.get("/",function(req,res){
-        res.sendFile(path.join(__dirname,"../public/html/index.html"));// HOMEPAGE
+        res.sendFile(path.join(__dirname,"../public/html/login.html"));// HOMEPAGE
     });
 
     app.get("/nextpage",function(req,res){
