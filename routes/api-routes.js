@@ -12,7 +12,8 @@ const userExists = function(userCredentials){
 };
 
 module.exports = app=>{
-    //given credentials for a user, attempt a login
+    //given credentials for a user{username,password}, return result={usernameFound,passwordMatch}
+    //  result returns two booleans
     app.post("/api/findUser",(req,res)=>{
         Users.findOne({
             //search for username
