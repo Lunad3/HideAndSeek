@@ -21,7 +21,6 @@
         </label>
         <button id="button">Login</button>
     </div>
-    <button><a href="/html/nextpage.html">GO TO NEXT PAGE</a>></button>>
 
     <script>
         $("#button").on("click",event=>{
@@ -31,10 +30,26 @@
             };
             if($("#isNewUser").prop("checked")){
                 //create new row with user credentials and console.log data
-                $.post("/api/signup",userCredentials).then(data=>console.log(data));
+                $.post("/api/findUser",userCredentials).then((res,userCredentials)=>{
+                    if(res.usernameFound){
+                        console.log("ERROR::UserExists")
+                    }else{
+                        $.post("/api/signup",userCredentials).then(data=>console.log(data));
+                    }
+                });                
             }else{
                 //find user with same credentials and console.log data
-                $.post("/api/login",userCredentials).then(data=>console.log(data));                
+                $.post("/api/findUser",userCredentials).then(res=>{
+                    if(res.usernameFound){
+                        if(res.passwordMatch){
+                            console.log("LOGIN THIS USER");
+                        }else{
+                            console.log("INCORRECT PASSWORD!!");
+                        }
+                    }else{
+                        console.log("Username not found")
+                    }
+                });                
             }
         });
     </script>

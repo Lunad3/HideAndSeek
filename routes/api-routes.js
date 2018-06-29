@@ -13,19 +13,25 @@ const userExists = function(userCredentials){
 
 module.exports = app=>{
     //given credentials for a user, attempt a login
-    app.post("/api/login",(req,res)=>{
-        const user = req.body;
+    app.post("/api/findUser",(req,res)=>{
         Users.findOne({
-            where:{
-                username: user.username,
-                password: user.password
+            //search for username
+            where: {username:req.body.username}
+        }).then(dbResult=>{
+            //default that credentials not found
+            let response = {
+                usernameFound: false,
+                passwordMatch: false
             }
-        }).then(result=>{
-            console.log(result);
-            if(result != null){
-
+            //if username exists
+            if(dbResult != null){
+                response.usernameFound = true;
+                //if passwords match
+                if(dbResult.password == req.body.password){
+                    response.passwordMatch = true;
+                }
             }
-            res.json(result);
+            res.json(response);
         });
     });
 
